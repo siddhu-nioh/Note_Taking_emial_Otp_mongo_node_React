@@ -39,7 +39,7 @@ const CreateNoteModal = ({ open, handleClose }) => {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 400,
+          width: {xs:"50vw",md:400},
           backgroundColor: 'white',
           padding: 3,
           borderRadius: 2,

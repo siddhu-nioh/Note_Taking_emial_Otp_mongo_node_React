@@ -1,4 +1,4 @@
-// controllers/notes.js
+
 const Note = require('../models/note');
 
 exports.createNote = async (req, res) => {

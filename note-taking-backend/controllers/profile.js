@@ -1,4 +1,4 @@
-// controllers/profile.js
+
 const User = require('../models/user');
 
 exports.getProfile = async (req, res) => {

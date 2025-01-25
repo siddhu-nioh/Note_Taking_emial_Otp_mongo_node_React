@@ -25,12 +25,12 @@ const sendOTP = async (email, otp) => {
       text: `Your OTP is ${otp}. It will expire in 5 minutes.`,
     };
 
-    console.log('Sending email to:', email); // Log the recipient email
-    const info = await transporter.sendMail(mailOptions); // Use transporter to send the email
-    console.log('Email sent successfully:', info.response); // Log success
+    console.log('Sending email to:', email); 
+    const info = await transporter.sendMail(mailOptions); 
+    console.log('Email sent successfully:', info.response); 
   } catch (error) {
-    console.error('Error sending email:', error); // Log the error
-    throw error; // Re-throw the error to handle it in the controller
+    console.error('Error sending email:', error); 
+    throw error; 
   }
 };
 
