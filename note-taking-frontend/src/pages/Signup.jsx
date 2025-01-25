@@ -32,13 +32,12 @@ const Signup = () => {
   const handleEmailChange = async (e) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
-    const sendOTP = async (email) => {
       if (validateEmail(newEmail) && newEmail.endsWith('.com')) {
         setIsLoading(true); // Set loading state
         try {
           await axios.post(`${apiBaseURL}/api/auth/signup`, {
             name,
-            email,
+            email: newEmail,
             dateOfBirth,
           });
           setIsOtpSent(true);
@@ -50,8 +49,6 @@ const Signup = () => {
         }
       }
     };
-    sendOTP(newEmail);
-  };
 
   
   const handleSignup = async () => {

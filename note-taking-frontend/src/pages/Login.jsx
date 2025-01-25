@@ -29,8 +29,6 @@ const Login = () => {
   const handleEmailChange = async (e) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
-
-    
     if (validateEmail(newEmail) && newEmail.endsWith('.com')) {
       setIsLoading(true); // Set loading state
       try {
