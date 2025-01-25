@@ -1,0 +1,75 @@
+/* Signup.css */
+.signup-main {
+    display:flex;
+    flex-direction: column;
+}
+
+.signup {
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+    padding:.5rem;
+}
+
+.google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 8px; /* Adjust the border radius as needed */
+    padding: 10px;
+    width: 19vw; /* Set width for the box */
+}
+.divider {
+    display: flex;
+    /* margin-left: -9vw; */ /* Uncomment if needed */
+    align-items: center;
+    /* justify-content: center; */ /* Uncomment if needed */
+    position: relative;
+    height: 2.5vw;
+    margin-bottom: 1vw;
+}
+.divider-main{
+   width: 20vw;
+   margin: 0 10px;
+   z-index: 0;
+}
+@media (max-width:600px) {
+    .divider{
+        width: 100%;
+        margin-top: 1vw;
+        margin-bottom: 4vw;
+    }
+    .divider-main{
+        width: 100%;
+    }
+    .google {
+        /* Adjust styles for mobile view */
+        width:95%; /* or any other adjustments */
+        margin-bottom: 4vw;
+        /* padding:.25rem; Adjust padding */
+    }
+    
+    .signup-main {
+        margin-top: 2vw;
+        flex-direction:block; /* Stack elements vertically */
+    }
+    
+    .signup {
+        /* Adjust logo and text alignment */
+        margin-top: 4vw;
+        font: 600;
+        font-size: 6vw;
+        justify-content:center; 
+    }
+    
+    /* Hide image on mobile */
+    .image-container {
+        display:none; 
+    }
+}
+
+@media (min-width:601px) {
+    /* Styles for larger screens */
+}
