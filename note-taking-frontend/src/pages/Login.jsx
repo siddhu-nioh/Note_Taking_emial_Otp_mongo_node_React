@@ -4,7 +4,7 @@ import { TextField, Button, Typography, Box, Card, CardMedia,Divider,Checkbox, F
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { ApiContext } from '../context/ApiContext'; // Import the context
+import { ApiContext } from '../context/ApiContext'; 
 
 import GoogleIcon from '@mui/icons-material/Google';
 import myimage from './bck.jpeg';
@@ -14,14 +14,14 @@ const Login = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const navigate = useNavigate();
   const [isLoading,setIsLoading]=useState(false);
-  // Access context values
+  
   
   const [keepMeLoggedIn, setKeepMeLoggedIn] = useState(false);
   const { apiBaseURL, } = useContext(ApiContext);
 
-  // Function to validate email format
+  
   const validateEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
     return regex.test(email);
   };
 
@@ -30,33 +30,33 @@ const Login = () => {
     const newEmail = e.target.value;
     setEmail(newEmail);
 
-    // Check if the email is valid and ends with ".com"
+    
     if (validateEmail(newEmail) && newEmail.endsWith('.com')) {
       setIsLoading(true); // Set loading state
       try {
-        await axios.post(`${apiBaseURL}/api/auth/login`, { email: newEmail }); // Use apiBaseURL from context
+        await axios.post(`${apiBaseURL}/api/auth/login`, { email: newEmail }); 
         setIsOtpSent(true);
         toast.success('OTP sent to your email. Please enter the OTP.');
       } catch (error) {
-        toast.error(error.response?.data?.message || 'Failed to send OTP');
+        toast.error(error.response?.data?.message || 'Failed to send OTP ,PLEASE CHECK THE EMAIL ONCE');
       } finally {
-        setIsLoading(false); // Reset loading state
+        setIsLoading(false); 
       }
     }
   };
 
   // Verify OTP and complete login
   const handleLogin = async () => {
-    setIsLoading(true); // Set loading state
+    setIsLoading(true); 
     try {
-      const response = await axios.post(`${apiBaseURL}/api/auth/verify-otp`, { email, otp }); // Use apiBaseURL from context
+      const response = await axios.post(`${apiBaseURL}/api/auth/verify-otp`, { email, otp }); 
       localStorage.setItem('token', response.data.token);
       toast.success('Login successful!');
       navigate('/notes');
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to verify OTP');
     } finally {
-      setIsLoading(false); // Reset loading state
+      setIsLoading(false); 
     }
   };
 
@@ -115,11 +115,12 @@ const Login = () => {
 
       
       <Button
-        // variant="contained"
+        
         onClick={handleLogin}
-        sx={{ width:{ xs:'100%',md:'21vw'}, backgroundColor: '#1877F2',borderRadius:3, marginBottom: 2,height:{xs:"10vw",md:"3vw"},'&:disabled': {
-          backgroundColor: '#1877F2', // Gray background when disabled
-          color: 'white'  }}}
+        sx={{ width:{ xs:'100%',md:'21vw'},color:"white", backgroundColor: '#1877F2',borderRadius:3, marginBottom: 2,height:{xs:"10vw",md:"3vw"},
+        '&:disabled': {
+          backgroundColor: '#1877F2',color: 'white'  }}
+        }
         disabled={!isOtpSent || isLoading}
       >
         {isLoading ? 'Logging In...' : 'Login'}
@@ -144,7 +145,7 @@ const Login = () => {
            
             
         >
-            {/* Google icon with color */}
+            
             <Typography variant="body1" color="textSecondary">
                 sign in with Google
             </Typography>

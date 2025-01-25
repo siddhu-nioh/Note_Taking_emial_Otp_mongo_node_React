@@ -1,16 +1,15 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ApiContext } from '../context/ApiContext'; // Import ApiContext
+import { ApiContext } from '../context/ApiContext'; 
 import { AppBar, Toolbar, Typography, IconButton, Button } from '@mui/material';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-// import { useAuth } from './AuthContext';
-// import { useNavigate } from 'react-router-dom';
+
 
 const Header = () => {
   
-    const { removeAuthToken } = useContext(ApiContext); // Use ApiContext
+    const { removeAuthToken } = useContext(ApiContext); 
   const navigate = useNavigate();
   
   const handleSignOut = () => {

@@ -3,15 +3,15 @@ import { Box, Typography, TextField, Button, Modal } from '@mui/material';
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ApiContext } from '../context/ApiContext'; // Import ApiContext
-// import { useAuth } from './AuthContext';
+import { ApiContext } from '../context/ApiContext'; 
+
 import axios from 'axios'
 const CreateNoteModal = ({ open, handleClose }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   const isFormValid = title.trim() !== '' && content.trim() !== '';
-  const { post,fetchNotes } = useContext(ApiContext); // Use ApiContext
+  const { post,fetchNotes } = useContext(ApiContext); 
 
   const createNote = async () => {
     if (!isFormValid) {
@@ -19,32 +19,17 @@ const CreateNoteModal = ({ open, handleClose }) => {
         return;
       }
     try {
-      await post('/api/notes', { title, content }); // Use the post function from ApiContext
+      await post('/api/notes', { title, content }); 
       setTitle('');
       setContent('');
       handleClose();
-    //   fetchNotes();
-      fetchNotes(); // Refresh the notes list
+    
+      fetchNotes(); 
       toast.success('Note created successfully');
     } catch (error) {
       console.error('Failed to create note', error);
     }
   };
-//   const createNote = async () => {
-//     try {
-//       await axios.post(
-//         '/api/notes',
-//         { title, content },
-//         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-//       );
-//       setTitle('');
-//       setContent('');
-   
-//       handleClose();
-//     } catch (error) {
-//       console.error('Failed to create note', error);
-//     }
-//   };
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -81,7 +66,7 @@ const CreateNoteModal = ({ open, handleClose }) => {
           sx={{ marginBottom: 2 }} require
         />
         <Button sx={{backgroundColor:'#1F75FE',color:'white', '&:disabled': {
-      backgroundColor: '#1F75FE', // Gray background when disabled
+      backgroundColor: '#1F75FE', 
       color: 'white'  },
     borderRadius:3,}} onClick={createNote}  disabled={!isFormValid} >
           Create Note

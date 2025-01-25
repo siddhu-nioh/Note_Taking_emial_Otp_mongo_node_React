@@ -1,26 +1,26 @@
 import { createContext, useState, useCallback,useEffect } from 'react';
 import axios from 'axios';
 
-// Create the context
+
 const ApiContext = createContext();
 
-// Create a provider component
+
 const ApiProvider = ({ children }) => {
-  // Define your global values here
-  const apiBaseURL = 'http://localhost:5000'; // API base URL
-  const [appTheme, setAppTheme] = useState('light'); // App theme (can be dynamic)
+  
+  const apiBaseURL = 'https://note-taking-emial-otp-mongo-node-react.onrender.com'; 
+  const [appTheme, setAppTheme] = useState('light'); 
   const appVersion = '1.0.0'; // App version
-  const [isLoading, setIsLoading] = useState(false); // Global loading state
-  const [error, setError] = useState(null); // Global error state
+  const [isLoading, setIsLoading] = useState(false); 
+  const [error, setError] = useState(null); 
   const [notes, setNotes] = useState([]);
-  const [user, setUser] = useState({ name: '', email: '', dateOfBirth: '' }); // Initialize with default values
+  const [user, setUser] = useState({ name: '', email: '', dateOfBirth: '' }); 
 
   const fetchProfile = useCallback(async () => {
     try {
       const response = await axios.get(`${apiBaseURL}/api/profile`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
-      setUser(response.data); // Update the user state
+      setUser(response.data); 
     } catch (error) {
       console.error('Failed to fetch profile', error);
     }
@@ -47,22 +47,22 @@ const ApiProvider = ({ children }) => {
       fetchNotes();
     }
   }, []);
-  // Get token from localStorage (if available)
+  
   const getAuthToken = () => {
     return localStorage.getItem('token');
   };
 
-  // Set token in localStorage
+  
   const setAuthToken = (token) => {
     localStorage.setItem('token', token);
   };
 
-  // Remove token from localStorage
+  
   const removeAuthToken = () => {
     localStorage.removeItem('token');
   };
 
-  // Centralized API request function
+  
   const makeRequest = useCallback(
     async (method, endpoint, data = null, headers = {}) => {
       setIsLoading(true);
@@ -90,18 +90,18 @@ const ApiProvider = ({ children }) => {
     [apiBaseURL]
   );
 
-  // Reusable API functions
+  
   const get = useCallback((endpoint) => makeRequest('get', endpoint), [makeRequest]);
   const post = useCallback((endpoint, data) => makeRequest('post', endpoint, data), [makeRequest]);
   const put = useCallback((endpoint, data) => makeRequest('put', endpoint, data), [makeRequest]);
   const del = useCallback((endpoint) => makeRequest('delete', endpoint), [makeRequest]);
 
-  // Toggle app theme
+  
   const toggleTheme = () => {
     setAppTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   };
 
-  // Value object to be passed to consumers
+  
   const value = {
     apiBaseURL,
     appTheme,

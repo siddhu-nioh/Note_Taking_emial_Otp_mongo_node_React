@@ -5,7 +5,7 @@ import { Box, Typography, Avatar, CircularProgress } from '@mui/material';
 const ProfileBox = () => {
   const { user, fetchProfile, isLoading, error } = useContext(ApiContext);
 
-  // Fetch user profile on component mount
+  
   useEffect(() => {
     fetchProfile();
   }, [fetchProfile]);
@@ -40,23 +40,9 @@ const ProfileBox = () => {
             fontSize: { xs: '9vw', sm: '4vw' },}} gutterbottom> welcome {user.name} !  </Typography>
       <Typography variant="h6" gutterBottom sx={{color:'gray'}}>
         Email : {user.email}
-        {/* Profile Information */}
+        
       </Typography>
-      {/* <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Avatar sx={{ width: 56, height: 56 }}>{user.name.charAt(0)}</Avatar>
-        <Box>
-          <Typography variant="body1">
-            <strong>Name:</strong> {user.name}
-          </Typography>
-          <Typography variant="body1">
-            <strong>Email:</strong> {user.email}
-          </Typography>
-          <Typography variant="body1">
-            <strong>Date of Birth:</strong>{' '}
-            {new Date(user.dateOfBirth).toLocaleDateString()}
-          </Typography> */}
-        {/* </Box>
-      </Box> */}
+     
     </Box>
   );
 };

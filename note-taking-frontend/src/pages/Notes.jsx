@@ -4,18 +4,15 @@ import { Box, Typography, Button, List, ListItem, ListItemText, IconButton } fro
 import DeleteIcon from '@mui/icons-material/Delete';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { useAuth } from './AuthContext';
+
 import Header from './Header';
 import ProfileBox from './ProfileBox';
 import CreateNoteModal from './CreateNoteModal';
 import axios from 'axios';
 const Notes = () => {
-  // const { user, notes, fetchNotes, signOut } = useAuth();
-  
-  // const { get, isLoading, error } = useContext(ApiContext); // Use ApiContex
   const [openModal, setOpenModal] = useState(false);
   
-  const { get, isLoading, error,fetchNotes,user,notes,signOut,apiBaseURL } = useContext(ApiContext); // Use ApiContex
+  const { get, isLoading, error,fetchNotes,user,notes,signOut,apiBaseURL } = useContext(ApiContext); 
 
   const deleteNote = async (id) => {
     try {
@@ -35,18 +32,17 @@ const Notes = () => {
       <Box sx={{ padding: 3 }}>
         <ProfileBox />
         <Button
-          // variant="contained"
           
           onClick={() => setOpenModal(true)}
           sx={{
             width: { xs: '100%', sm: '20%' },
-            height: { xs: '10vw', sm: '3vw' }, // Set a specific width (e.g., 200px)
-            display: 'flex', // Use flexbox to center content
-            justifyContent: 'center', // Center content horizontally
-            alignItems: 'center', // Center content vertically
-            boxShadow:"rgba(17, 12, 46, 0.18) 0px 40px 50px 0px",            marginBottom: 4, borderRadius: 3 ,color:'white', backgroundColor: '#1877F2', // Add your desired background color here
+            height: { xs: '10vw', sm: '3vw' }, 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            boxShadow:"rgba(17, 12, 46, 0.18) 0px 40px 50px 0px",            marginBottom: 4, borderRadius: 3 ,color:'white', backgroundColor: '#1877F2', 
             '&:hover': {
-              backgroundColor: '#1F75FE', // Optional: Add a hover effect
+              backgroundColor: '#1F75FE', 
             },}}
         >
           Create Note

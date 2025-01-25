@@ -4,7 +4,7 @@ import { TextField, Button, Typography, Box, CardMedia, Card, Divider ,} from '@
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { ApiContext } from '../context/ApiContext'; // Import the context
+import { ApiContext } from '../context/ApiContext'; 
 // import GradientGoogleIcon from './GoogleIcon';
 import GoogleIcon from '@mui/icons-material/Google'; 
  // Import the 
@@ -19,16 +19,15 @@ const Signup = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const navigate = useNavigate();
 
-  // Access context values
+  // Accessing api  context values
   const { apiBaseURL, isLoading, setIsLoading } = useContext(ApiContext);
 
   // Function to validate email format
   const validateEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
     return regex.test(email);
   };
 
-  // Debounce function
   const debounce = (func, delay) => {
     let timeoutId;
     return (...args) => {
@@ -39,15 +38,13 @@ const Signup = () => {
     };
   };
 
-  // Automatically send OTP when email is entered and valid
   const handleEmailChange = async (e) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
 
-    // Debounced function to send OTP
     const sendOTP = debounce(async (email) => {
       if (validateEmail(email)) {
-        setIsLoading(true); // Set loading state
+        setIsLoading(true); 
         try {
           await axios.post(`${apiBaseURL}/api/auth/signup`, {
             name,
@@ -57,20 +54,20 @@ const Signup = () => {
           setIsOtpSent(true);
           toast.success('OTP sent to your email. Please enter the OTP.');
         } catch (error) {
-          toast.error(error.response?.data?.message || 'Failed to send OTP');
+          toast.error(error.response?.data?.message || 'Failed to send OTP,PLEASE CHECK THE EMAIL ONCE ');
         } finally {
-          setIsLoading(false); // Reset loading state
+          setIsLoading(false); 
         }
       }
-    }, 500); // 500ms delay
+    }, 500); 
 
-    // Call the debounced function
+    
     sendOTP(newEmail);
   };
 
-  // Verify OTP and complete signup
+  
   const handleSignup = async () => {
-    setIsLoading(true); // Set loading state
+    setIsLoading(true); 
     try {
       const response = await axios.post(`${apiBaseURL}/api/auth/verify-otp`, {
         email,
@@ -82,7 +79,7 @@ const Signup = () => {
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to verify OTP');
     } finally {
-      setIsLoading(false); // Reset loading state
+      setIsLoading(false); 
     }
   };
 
@@ -138,10 +135,10 @@ const Signup = () => {
         />
     
       <Button
-        // variant="contained"
+        
         onClick={handleSignup}
         sx={{ width: { xs: '100%', md: '20vw' },height:{xs:"10vw",md:"3vw"}, backgroundColor: '#1877F2',borderRadius: 3,color:"white", marginBottom: 2,'&:disabled': {
-      backgroundColor: '#1877F2', // Gray background when disabled
+      backgroundColor: '#1877F2',
       color: 'white'  }}}
         disabled={!isOtpSent || isLoading}
       >
@@ -153,12 +150,12 @@ const Signup = () => {
         >
             <Divider  className='divider-main' />
             <Typography 
-                // variant="body1" 
+                
                 sx={{ background: "white", color: 'gray', position: 'absolute', zIndex: 10 ,left:{xs:"30vw",md:"10vw"}}}
             >
                 or
             </Typography>
-            {/* <Divider style={{ width: "20vw", margin: '0 10px' }} /> */}
+            
 
             
         </div>
@@ -179,13 +176,12 @@ const Signup = () => {
      
     </Box>
     <Box sx={{ height: "70vh", width: "60vw" ,borderRadius: 2, boxShadow: 0,padding: 3,display: { xs: 'none', md: 'block' }}}>
-      {/* pic comes */}
+
       <Card sx={{ height: "70vh", width: "60vw" ,borderRadius: 5,border:"none", boxShadow:0}}>
         <CardMedia
             component="img"
             sx={{ height: "70vh", width: "50vw" ,borderRadius: 5, boxShadow:10}}
-            // height="500vw"
-            // width="500"
+            
             image={myimage}
             alt="description"
         />
