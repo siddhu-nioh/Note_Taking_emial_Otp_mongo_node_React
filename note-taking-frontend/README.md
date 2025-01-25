@@ -1,3 +1,7 @@
+WANT TO SEE  THE DEPLOYED APPLICATION , CLICL THE LINK BELOW 
+https://note-taking-emial-otp-mongo-node-react.vercel.app/
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
