@@ -19,8 +19,10 @@ const Signup = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const navigate = useNavigate();
 
+    const [isLoading,setIsLoading]=useState(false);
+
   // Accessing api  context values
-  const { apiBaseURL, isLoading, setIsLoading } = useContext(ApiContext);
+  const { apiBaseURL } = useContext(ApiContext);
 
   // Function to validate email format
   const validateEmail = (email) => {
@@ -33,7 +35,7 @@ const Signup = () => {
     const newEmail = e.target.value;
     setEmail(newEmail);
       if (validateEmail(newEmail) && newEmail.endsWith('.com')) {
-        setIsLoading(true); // Set loading state
+        setIsLoading(true); 
         try {
           await axios.post(`${apiBaseURL}/api/auth/signup`, {
             name,
