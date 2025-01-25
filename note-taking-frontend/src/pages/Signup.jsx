@@ -28,23 +28,13 @@ const Signup = () => {
     return regex.test(email);
   };
 
-  const debounce = (func, delay) => {
-    let timeoutId;
-    return (...args) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        func(...args);
-      }, delay);
-    };
-  };
-
+ 
   const handleEmailChange = async (e) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
-
-    const sendOTP = debounce(async (email) => {
-      if (validateEmail(email)) {
-        setIsLoading(true); 
+    const sendOTP = async (email) => {
+      if (validateEmail(newEmail) && newEmail.endsWith('.com')) {
+        setIsLoading(true); // Set loading state
         try {
           await axios.post(`${apiBaseURL}/api/auth/signup`, {
             name,
@@ -59,9 +49,7 @@ const Signup = () => {
           setIsLoading(false); 
         }
       }
-    }, 500); 
-
-    
+    };
     sendOTP(newEmail);
   };
 
